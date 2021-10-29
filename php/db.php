@@ -141,12 +141,12 @@ function insertLivre(mysqli $db, $bookName, $publishDate, $ISBN, $genre, $id_aut
 }
 
 /**
- * Delete record
+ * Delete livre
  * @param mysqli $db
  * @param $id
  * @throws Exception
  */
-function deleteRecord(mysqli $db, $id){
+function deleteLivre(mysqli $db, $id){
 	$sql = "DELETE FROM `livre` WHERE id ='".$id."';";
 	$result = $db->query($sql);
 	if(!$result){
@@ -154,6 +154,19 @@ function deleteRecord(mysqli $db, $id){
 	}
 }
 
+/**
+ * Delete auteur
+ * @param mysqli $db
+ * @param $id
+ * @throws Exception
+ */
+function deleteAuteur(mysqli $db, $id){
+	$sql = "DELETE FROM `auteur` WHERE id_author ='".$id."';";
+	$result = $db->query($sql);
+	if(!$result){
+		throw new Exception('Cannot delete auteur');
+	}
+}
 /**
  * Search with name into database
  * @param mysqli $db

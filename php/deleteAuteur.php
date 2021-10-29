@@ -12,6 +12,6 @@ if(!empty($_GET['id'])){
 if(empty($id))
     throw new Exception('ID is blank');
 
-deleteLivre($db, $id);
-header("Location: /php/print.php");
+deleteAuteur($db, $id);
+header("Location: /php/auteur.php");
 die;

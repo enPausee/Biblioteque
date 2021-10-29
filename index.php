@@ -97,6 +97,9 @@ $res = mysqli_query($db, $sql);
               <form action="php/print.php" method="post">
                   <input type="submit" class="btn btn-primary" value="Voir les livres"/>
               </form>
+              <form action="php/auteur.php" method="post">
+                  <input type="submit" class="btn btn-primary" value="Voir les auteurs"/>
+              </form>
               </div>
             </form>
           </div>
