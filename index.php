@@ -22,7 +22,7 @@ $res = mysqli_query($db, $sql);
           </div>
             <form class="navbar-perso" action="php/search.php" method="post">
               <input class="form-control me-2" type="search" placeholder="Rechercher un livre" aria-label="Search" name="search">
-              <input class="form-control searchID" type="search" placeholder="ID livre" aria-label="Search" name="searchID">
+              <input class="form-control searchID" type="search" placeholder="Recherche via ID" aria-label="Search" name="searchID">
               <button class="btn btn-primary" type="submit">Search</button>
             </form>
           <div class="panel-body">

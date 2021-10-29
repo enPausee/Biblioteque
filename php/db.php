@@ -97,11 +97,13 @@ function insertAuteur(mysqli $db, $auteurName, $already_exist)
 {
 	if($already_exist == TRUE)
 	{
-		$fulldata = fetchAll($db);
-		if(count($fulldata) > 0){
-			foreach($fulldata as $data){
-				if($data['name'] == $auteurName){
-					$id = $data['id_author'];
+		
+		$listeAuteur = fetchAuteur($db);
+		if(count($listeAuteur) > 0){
+			foreach($listeAuteur as $auteur){
+				if($auteur->name == $auteurName)       //need fix
+				{
+					$id = $auteur->id_author;
 					return $id;
 				}
 			}
@@ -156,7 +158,7 @@ function deleteRecord(mysqli $db, $id){
 /**
  * Search with name into database
  * @param mysqli $db
- * @return $fulldata
+ * @return $listeAuteur
  */
 function searchName(mysqli $db){
 	$search = '';
@@ -170,19 +172,20 @@ function searchName(mysqli $db){
 	{
 		while($row = $result->fetch_array())
 		{
-			$fulldata[] = $row;
+			$listeAuteur[] = $row;
 		}
 	}
-	return $fulldata;
+	return $listeAuteur;
 }
 
 /**
  * Search with id into database
  * @param mysqli $db
- * @return $fulldata
+ * @return $listeAuteur
  */
 function searchID(mysqli $db, $id){
-	$id = $_POST['searchID'];
+	if(empty($id))
+		$id = $_POST['searchID'];
 
 	$sql = "SELECT * FROM livre l JOIN auteur a WHERE l.auteur_id = a.id_author AND l.id = ".$id.";";
 
@@ -192,10 +195,10 @@ function searchID(mysqli $db, $id){
 	{
 		while($row = $result->fetch_array())
 		{
-			$fulldata[] = $row;
+			$listeAuteur[] = $row;
 		}
 	}
-	return $fulldata;
+	return $listeAuteur;
 }
 
 /**

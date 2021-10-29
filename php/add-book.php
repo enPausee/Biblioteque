@@ -27,6 +27,7 @@ require_once 'db.php';
 	else{
 		insertAuteur($db, $auteurName, $already_exist);
 	}
+	echo $id_author;
 	insertLivre($db, $bookName, $publishDate, $ISBN, $genre, $id_author);
 
 	$db->close();

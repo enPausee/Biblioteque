@@ -23,7 +23,7 @@ $fulldata = fetchall($db);
                     <th scope="col">Date de parution</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Genre</th>
-                    <th scope="col">Nom</th>
+                    <th scope="col">Auteur</th>
                 </tr>
             </thead>
             <tbody>
