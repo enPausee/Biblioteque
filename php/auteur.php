@@ -20,6 +20,7 @@ $fulldata = fetchAuteur($db);
                 <tr>
                     <th scope="col">ID de l'auteur</th>
                     <th scope="col">Nom de l'auteur</th>
+                    <th scope="col">Nombre de livre</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@ $fulldata = fetchAuteur($db);
                     <tr>
                         <td><?php echo $data->id_author; ?></td>
                         <td><?php echo $data->name; ?></td>
+                        <td><?php echo nombreLivre($db, $data); ?></td>
                         <td><a href="deleteAuteur.php?id=<?php echo $data->id_author;?>">Delete</a></td>
                     </tr>
                 <?php endforeach;

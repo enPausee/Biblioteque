@@ -162,7 +162,6 @@ function deleteLivre(mysqli $db, $id){
  */
 function deleteAuteur(mysqli $db, $id){
 	$sql = "DELETE FROM `auteur` WHERE id_author ='".$id."';";
-	echo $sql;
 	$result = $db->query($sql);
 	if(!$result){
 		throw new Exception('Cannot delete auteur');
@@ -270,5 +269,12 @@ function getAuteurId($db, $auteurName){
 		}
 	}
 	return FALSE;
+}
+
+function nombreLivre($db, $data){
+	$sql = "SELECT COUNT(*) FROM livre WHERE auteur_id =".$data->id_author.";";
+	$result = $db->query($sql);
+	$row = $result->fetch_row();
+	return $row[0];
 }
 ?>

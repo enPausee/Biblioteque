@@ -21,7 +21,7 @@ $res = mysqli_query($db, $sql);
             <h1>Ajout livre</h1>
           </div>
             <form class="navbar-perso" action="php/search.php" method="post">
-              <input class="form-control me-2" type="search" placeholder="Rechercher un livre" aria-label="Search" name="search">
+              <input class="form-control me-2" type="search" placeholder="Rechercher un titre" aria-label="Search" name="search">
               <input class="form-control searchID" type="search" placeholder="Recherche via ID" aria-label="Search" name="searchID">
               <button class="btn btn-primary" type="submit">Search</button>
             </form>
