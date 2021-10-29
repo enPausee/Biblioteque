@@ -154,7 +154,7 @@ function deleteRecord(mysqli $db, $id){
 }
 
 /**
- * Search name into database
+ * Search with name into database
  * @param mysqli $db
  * @return $fulldata
  */
@@ -163,7 +163,6 @@ function searchName(mysqli $db){
 	$search = $_POST['search'];
 
 	$sql = "SELECT * FROM livre l JOIN auteur a WHERE l.auteur_id = a.id_author AND l.book_name LIKE '"."%".$search."%"."';";
-	echo $sql;
 
 	$result = $db->query($sql);
 
