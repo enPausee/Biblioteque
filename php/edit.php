@@ -17,7 +17,7 @@ $id = $_GET['id'];
 // Edit
 if(isset($_POST['update']) && !empty($auteurName) && !empty($bookName) && !empty($publishDate) && !empty($ISBN) && !empty($genre))
 {
-  uptdateRecord($db, $auteurName, $bookName, $publishDate, $ISBN, $genre, $id);
+  updateRecord($db, $auteurName, $bookName, $publishDate, $ISBN, $genre, $id);
   header("Location: /php/print.php");
   die;
 }

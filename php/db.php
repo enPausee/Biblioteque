@@ -101,8 +101,7 @@ function insertAuteur(mysqli $db, $auteurName, $already_exist)
 		$listeAuteur = fetchAuteur($db);
 		if(count($listeAuteur) > 0){
 			foreach($listeAuteur as $auteur){
-				if($auteur->name == $auteurName)       //need fix
-				{
+				if($auteur->name == $auteurName){
 					$id = $auteur->id_author;
 					return $id;
 				}
@@ -211,17 +210,51 @@ function searchID(mysqli $db, $id){
  * @param $genre
  * @param $id
  */
-function uptdateRecord(mysqli $db, $auteurName, $bookName, $publishDate, $ISBN, $genre, $id){
-	$sql =  "UPDATE `auteur` SET `name`= '$auteurName' WHERE `id_author` = $id";
-	$result = $db->query($sql);
-	if(!$result){
-		throw new Exception('Cannot update auteur');
+function updateRecord(mysqli $db, $auteurName, $bookName, $publishDate, $ISBN, $genre, $id){
+
+	$auteurID = getAuteurId($db, $auteurName);
+	if(!checkAuteur($db,$auteurName)){
+		$sql = "INSERT INTO `auteur`(`name`) VALUES ('$auteurName');";
+		$result = $db->query($sql);
+		$auteurID = getAuteurId($db, $auteurName);
+		$sql = "UPDATE `livre` SET `book_name`= '$bookName', `publish_date` = '$publishDate', `ISBN` = '$ISBN', `genre` = '$genre', `auteur_id`='$auteurID' WHERE `id` = $id";
+		$result = $db->query($sql);
 	}
-	
-	$sql = "UPDATE `livre` SET `book_name`= '$bookName', `publish_date` = '$publishDate', `ISBN` = '$ISBN', `genre` = '$genre' WHERE `id` = $id";
-	$result = $db->query($sql);
-	if(!$result){
-		throw new Exception('Cannot update livre');
+	else{
+		$sql = "UPDATE `livre` SET `book_name`= '$bookName', `publish_date` = '$publishDate', `ISBN` = '$ISBN', `genre` = '$genre', `auteur_id`= '$auteurID' 	WHERE `id` = $id";
+		$result = $db->query($sql);
+		if(!$result){
+			throw new Exception('Cannot update livre');
+		}
 	}
+}
+
+function checkAuteur($db, $auteurName){
+
+	$listeAuteur = fetchAuteur($db);
+
+	if(count($listeAuteur) > 0){
+		foreach($listeAuteur as $auteur){
+			if($auteur->name == $auteurName)       //need fix
+			{
+				return TRUE;
+			}
+		}
+	}
+	return FALSE;
+}
+
+function getAuteurId($db, $auteurName){
+	$listeAuteur = fetchAuteur($db);
+
+	if(count($listeAuteur) > 0){
+		foreach($listeAuteur as $auteur){
+			if($auteur->name == $auteurName)       //need fix
+			{
+				return $auteur->id_author;
+			}
+		}
+	}
+	return FALSE;
 }
 ?>
