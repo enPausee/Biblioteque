@@ -9,9 +9,6 @@ if(!empty($_GET['id'])){
     $id = $_GET['id'];
 }
 
-if(empty($id))
-    throw new Exception('ID is blank');
-
 deleteAuteur($db, $id);
 header("Location: /php/auteur.php");
 die;

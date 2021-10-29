@@ -92,7 +92,7 @@ $res = mysqli_query($db, $sql);
                 />
               </div>
               <div class="button-perso">
-                <input type="submit" class="btn btn-primary" value="Ajouter le livre" name="update"/>
+                <input type="submit" class="btn btn-primary" value="Ajouter le livre"/>
               </form>
               <form action="php/print.php" method="post">
                   <input type="submit" class="btn btn-primary" value="Voir les livres"/>

@@ -37,8 +37,8 @@ $fulldata = fetchall($db);
                         <td><?php echo $data['ISBN']; ?></td>
                         <td><?php echo $data['genre']; ?></td>
                         <td><?php echo $data['name']; ?></td>
-                        <td><a href="delete.php?id=<?php echo $data['id'];?>">Delete</a></td>
                         <td><a href="../php/edit.php?id=<?php echo $data['id'];?>">Edit</a></td>
+                        <td><a href="delete.php?id=<?php echo $data['id'];?>">Delete</a></td>
                     </tr>
                 <?php endforeach;
                 else: ?>

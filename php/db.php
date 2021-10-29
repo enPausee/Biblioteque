@@ -162,6 +162,7 @@ function deleteLivre(mysqli $db, $id){
  */
 function deleteAuteur(mysqli $db, $id){
 	$sql = "DELETE FROM `auteur` WHERE id_author ='".$id."';";
+	echo $sql;
 	$result = $db->query($sql);
 	if(!$result){
 		throw new Exception('Cannot delete auteur');
