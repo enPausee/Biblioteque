@@ -21,7 +21,8 @@ $res = mysqli_query($db, $sql);
             <h1>Ajout livre</h1>
           </div>
             <form class="navbar-perso" action="php/search.php" method="post">
-              <input class="form-control me-2" type="search" placeholder="Entrer un livre" aria-label="Search" name="search">
+              <input class="form-control me-2" type="search" placeholder="Rechercher un livre" aria-label="Search" name="search">
+              <input class="form-control searchID" type="search" placeholder="ID livre" aria-label="Search" name="searchID">
               <button class="btn btn-primary" type="submit">Search</button>
             </form>
           <div class="panel-body">
@@ -95,8 +96,8 @@ $res = mysqli_query($db, $sql);
               </form>
               <form action="php/print.php" method="post">
                   <input type="submit" class="btn btn-primary" value="Voir les livres"/>
-                </div>
               </form>
+              </div>
             </form>
           </div>
         </div>

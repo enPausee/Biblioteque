@@ -5,13 +5,12 @@ require_once 'db.php';
 	//Auteur var
 	if(!empty($_POST['NewauteurName'])){
 		$auteurName = $_POST['NewauteurName'];
-		$exist = FALSE;
+		$already_exist = FALSE;
 	}
 	else{
 		$auteurName = $_POST['auteurName'];
-		$exist = TRUE;
+		$already_exist = TRUE;
 	}
-		
 
 	//Book var
 	$bookName = $_POST['bookName'];
@@ -22,14 +21,15 @@ require_once 'db.php';
 	$db = connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 	$id_author = NULL;
 
-	if($exist)
-		$id_author = insertAuteur($db, $auteurName, $exist);
-	else
-		insertAuteur($db, $auteurName, $exist);
-	
+	if($already_exist == TRUE){
+		$id_author = insertAuteur($db, $auteurName, $already_exist);
+	}	
+	else{
+		insertAuteur($db, $auteurName, $already_exist);
+	}
 	insertLivre($db, $bookName, $publishDate, $ISBN, $genre, $id_author);
 
 	$db->close();
-	header("Location: /php/print.php");
+	header("Location: print.php");
 	die;
 ?>

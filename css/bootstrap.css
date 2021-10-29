@@ -22,6 +22,10 @@
   margin-top: auto;
 }
 
+.searchID{
+  width: 20% !important;
+}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;

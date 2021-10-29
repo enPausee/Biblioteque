@@ -4,7 +4,12 @@ require_once 'db.php';
 
 $db = connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-$fulldata = search($db);
+if(!empty($_POST['searchID'])){
+    $fulldata = searchID($db, $id);
+}
+else{
+    $fulldata = searchName($db);
+}
 
 ?>
 <html>

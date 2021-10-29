@@ -93,9 +93,9 @@ function fetchAll(mysqli $db)
  * @param mysqli $db
  * @param array $record
  */
-function insertAuteur(mysqli $db, $auteurName, $exist)
+function insertAuteur(mysqli $db, $auteurName, $already_exist)
 {
-	if($exist == TRUE)
+	if($already_exist == TRUE)
 	{
 		$fulldata = fetchAll($db);
 		if(count($fulldata) > 0){
@@ -126,11 +126,10 @@ function insertAuteur(mysqli $db, $auteurName, $exist)
  */
 function insertLivre(mysqli $db, $bookName, $publishDate, $ISBN, $genre, $id_author)
 {
-	if($id_author != NULL)
-		$author_id = $id_author;
+	if($id_author == NULL)
+		$author_id = $db->insert_id;	//get the last id
 	else
-		$author_id = $db->insert_id;   //get the last id
-
+		$author_id = $id_author;   
 	$sql = "INSERT INTO `livre`(`book_name`, `publish_date`, `ISBN`, `genre`, `auteur_id`) VALUES ('$bookName','$publishDate', '$ISBN', '$genre', $author_id);";
 	$result = $db->query($sql);
 	if(!$result){
@@ -155,14 +154,16 @@ function deleteRecord(mysqli $db, $id){
 }
 
 /**
- * Search into database
+ * Search name into database
  * @param mysqli $db
  * @return $fulldata
  */
-function search(mysqli $db){
+function searchName(mysqli $db){
+	$search = '';
 	$search = $_POST['search'];
 
 	$sql = "SELECT * FROM livre l JOIN auteur a WHERE l.auteur_id = a.id_author AND l.book_name LIKE '"."%".$search."%"."';";
+	echo $sql;
 
 	$result = $db->query($sql);
 
@@ -176,6 +177,38 @@ function search(mysqli $db){
 	return $fulldata;
 }
 
+/**
+ * Search with id into database
+ * @param mysqli $db
+ * @return $fulldata
+ */
+function searchID(mysqli $db, $id){
+	$id = $_POST['searchID'];
+
+	$sql = "SELECT * FROM livre l JOIN auteur a WHERE l.auteur_id = a.id_author AND l.id = ".$id.";";
+
+	$result = $db->query($sql);
+
+	if($result->num_rows > 0)
+	{
+		while($row = $result->fetch_array())
+		{
+			$fulldata[] = $row;
+		}
+	}
+	return $fulldata;
+}
+
+/**
+ * Update book
+ * @param mysqli $db
+ * @param $auteurName
+ * @param $ bookName
+ * @param $publishTable
+ * @param $ISBN
+ * @param $genre
+ * @param $id
+ */
 function uptdateRecord(mysqli $db, $auteurName, $bookName, $publishDate, $ISBN, $genre, $id){
 	$sql =  "UPDATE `auteur` SET `name`= '$auteurName' WHERE `id_author` = $id";
 	$result = $db->query($sql);
