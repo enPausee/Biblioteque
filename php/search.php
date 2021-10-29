@@ -12,21 +12,23 @@ else{
 }
 
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Liste livres</title>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
     </head>
     <body>
         <h1>Liste des Livres</h1>
-        <table class="table-primary">
+        <table class="table">
             <thead>
                 <tr>
-                    <th>ID du livre</th>
-                    <th>Nom du livre</th>
-                    <th>Date de parution</th>
-                    <th>ISBN</th>
-                    <th>Genre</th>
-                    <th>Nom</th>
+                    <th scope="col">ID du livre</th>
+                    <th scope="col">Nom du livre</th>
+                    <th scope="col">Date de parution</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Nom</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,5 +53,8 @@ else{
                 <?php endif?>
             </tbody>
         </table>
+        <form action="../index.php" method="post">
+                <input type="submit" class="btn btn-primary" value="Retour vers ajout"/>
+        </form>
     </body>
 </html>
