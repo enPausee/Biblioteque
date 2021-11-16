@@ -2,6 +2,12 @@
 require_once 'config.php';
 require_once 'db.php';
 
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
 $db = connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 //Auteur var
@@ -91,10 +97,10 @@ if(isset($_POST['update']) && (empty($auteurName) || empty($bookName) || empty($
                 />
               </div>
               <div class="button-perso">
-              <input type="submit" class="btn btn-primary" name="update" value="Publier les modifications"/>
+              <input type="submit" class="btn btn-primary btn-small" name="update" value="Publier les modifications"/>
             </form>
             <form action="print.php" method="post">
-                <input type="submit" class="btn btn-primary" value="Retour au livres"/>
+                <input type="submit" class="btn btn-primary btn-small" value="Retour au livres"/>
             </form>
             </div>
           </div>

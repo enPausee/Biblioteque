@@ -2,10 +2,16 @@
 require_once 'config.php';
 require_once 'db.php';
 
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
 $db = connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 if(!empty($_POST['searchID'])){
-    $fulldata = searchID($db, $id);
+    $fulldata = searchID($db, $_POST['searchID']);
 }
 else{
     $fulldata = searchName($db);
@@ -48,7 +54,7 @@ else{
                 <?php endforeach;
                 else: ?>
                     <tr>
-                        <td colspand="6">Nous n'avons pas pu récupérer les livres</td>
+                        <td colspand="6">Nous n'avons pas le livre que vous chercher, dommage...</td>
                     </tr>
                 <?php endif?>
             </tbody>

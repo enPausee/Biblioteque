@@ -2,6 +2,12 @@
 require_once 'config.php';
 require_once 'db.php';
 
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
 $db = connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 $fulldata = fetchAuteur($db);
@@ -42,7 +48,7 @@ $fulldata = fetchAuteur($db);
             </tbody>
         </table>
         <form action="../index.php" method="post">
-                <input type="submit" class="btn btn-primary" value="Retour vers ajout"/>
+                <input type="submit" class="btn btn-primary" value="Retour vers la page d'acceuil"/>
         </form>
     </body>
 </html>

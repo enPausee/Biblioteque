@@ -2,6 +2,12 @@
 require_once 'config.php';
 require_once 'db.php';
 
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
 	//Auteur var
 	if(!empty($_POST['NewauteurName'])){
 		$auteurName = $_POST['NewauteurName'];
